@@ -1,0 +1,45 @@
+[
+  {
+    "name": "mollydogs-park",
+    "description": "A Docker-contained world called \"mollydogs-park\"",
+    "image": "ghcr.io/joshcassell4/mollydogs-park",
+    "type": "web",
+    "port": 8080,
+    "tags": [
+      "interactive",
+      "web",
+      "docker"
+    ]
+  },
+  {
+    "name": "mollydogs-park2",
+    "description": "Mollydogs in a web park",
+    "image": "ghcr.io/joshcassell4/mollydogs-park2",
+    "type": "web",
+    "port": 8080,
+    "tags": [
+      "dogs",
+      "joy"
+    ]
+  },
+  {
+    "name": "mollydogs-park3",
+    "description": "Mollydogs in a web park",
+    "image": "ghcr.io/joshcassell4/mollydogs-park3",
+    "type": "web",
+    "port": 8080,
+    "tags": [
+      "dogs joy"
+    ]
+  },
+  {
+    "name": "mollydogs-park4",
+    "description": "Mollydogs in a web park part 4",
+    "image": "ghcr.io/your-namespace/mollydogs-park4",
+    "type": "web",
+    "port": 8080,
+    "tags": [
+      "dogs joy"
+    ]
+  }
+]
