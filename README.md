@@ -4,7 +4,7 @@ A command-line tool for managing and deploying Docker-based virtual worlds and e
 
 ## Overview
 
-Docker Worlds is designed to simplify the management of containerized environments, making it easy to create, run, and share reproducible Docker-based worlds. Whether you're setting up development environments, game servers, or isolated testing environments, Docker Worlds provides the tools you need.
+Docker Worlds is designed to let me create docker worlds for me and my pets. Mollydogs-park ftw!
 
 ## Features
 
