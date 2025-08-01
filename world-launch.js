@@ -1,18 +1,29 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
-const { spawnSync, execSync } = require('child_process');
+const os = require('os');
+const { spawn, spawnSync, execSync } = require('child_process');
 
-// --- Parse CLI args ---
+// --- CLI argument parsing ---
 const args = process.argv.slice(2);
 const inputDir = args.find(arg => !arg.startsWith('--') && !arg.startsWith('-')) || '.';
-const portOverride = getArg('--port') || null;
-const detached = args.includes('--detach') || args.includes('-d');
+const absoluteDir = path.resolve(inputDir);
+const portOverride = getArg('--port');
+let detached = args.includes('--detach') || args.includes('-d');
 
-// --- Helper: get --key=value ---
 function getArg(flag) {
   const entry = args.find(arg => arg.startsWith(flag + '='));
   return entry ? entry.split('=')[1] : null;
+}
+
+function openBrowser(url) {
+  if (process.platform === 'win32') {
+    spawn('cmd', ['/c', 'start', '', url], { stdio: 'ignore', detached: true });
+  } else if (process.platform === 'darwin') {
+    spawn('open', [url], { stdio: 'ignore', detached: true });
+  } else {
+    spawn('xdg-open', [url], { stdio: 'ignore', detached: true });
+  }
 }
 
 // --- Load world.json ---
@@ -33,18 +44,21 @@ console.log(`📦 Image: ${image}`);
 console.log(`🗂️  Type: ${world.type}`);
 console.log(`🛠️  Entry: ${world.entry}`);
 if (portOverride) console.log(`⚙️  Port override: ${launchPort}`);
+if (world.type === 'cli') {
+  console.log(`🧩 Running in CLI mode`);
+  detached = false;
+}
 if (detached) console.log(`🧩 Running in detached mode`);
 console.log('');
 
 // --- Check if Docker image exists locally ---
 try {
   execSync(`docker image inspect ${image}`, { stdio: 'ignore' });
-} catch (err) {
-  console.warn(`⚠️ Image "${image}" not found locally.`);
+} catch {
   const dockerfilePath = path.join(worldDir, 'Dockerfile');
 
   if (fs.existsSync(dockerfilePath)) {
-    console.log(`🔧 Building Docker image locally...`);
+    console.log(`🔧 Image not found. Building Docker image...`);
     const buildResult = spawnSync('docker', ['build', '-t', image, worldDir], { stdio: 'inherit' });
 
     if (buildResult.status !== 0) {
@@ -52,16 +66,19 @@ try {
       process.exit(1);
     }
   } else {
-    console.error(`❌ Dockerfile not found at ${dockerfilePath}. Cannot build image.`);
+    console.error(`❌ Dockerfile not found. Cannot build missing image.`);
     process.exit(1);
   }
 }
 
-// --- Launch container ---
+// --- Construct docker args ---
 const dockerArgs = ['run', '--rm'];
-
 if (world.type === 'web') {
   dockerArgs.push('-p', `${launchPort}:80`);
+  if (world.volumeMount) {
+    console.log(`📦 Mounting volume from ${absoluteDir} to /app`);
+    dockerArgs.push('-v', `${absoluteDir}:/app`);
+  }
 } else if (world.type === 'cli') {
   dockerArgs.push('-it');
 } else {
@@ -70,14 +87,24 @@ if (world.type === 'web') {
 }
 
 if (detached) dockerArgs.push('-d');
-
 dockerArgs.push(image);
 
+// --- Launch docker container ---
 console.log(`▶️ docker ${dockerArgs.join(' ')}`);
-const result = spawnSync('docker', dockerArgs, { stdio: 'inherit' });
+const dockerProc = spawn('docker', dockerArgs, { stdio: 'inherit' });
 
-if (result.status !== 0 && !detached) {
-  console.warn(`⚠️ Docker exited with code ${result.status}. The world may still have launched correctly.`);
-} else {
-  console.log(detached ? `✅ Detached world running on port ${launchPort}` : `✅ World exited successfully`);
+// 🌐 Always launch browser in parallel for web worlds
+if (world.type === 'web') {
+  const url = `http://localhost:${launchPort}`;
+  console.log(`🌐 Opening browser at ${url}...`);
+  setTimeout(() => openBrowser(url), 1000); // give container a second to start
 }
+
+// --- On exit ---
+dockerProc.on('exit', (code) => {
+  if (detached) {
+    console.log(`✅ Detached world running on port ${launchPort}`);
+  } else {
+    console.log(`✅ Docker exited with code ${code}`);
+  }
+});

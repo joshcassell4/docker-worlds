@@ -1,0 +1,13 @@
+{
+  "name": "mollydogs-park",
+  "image": "ghcr.io/joshcassell4/mollydogs-park",
+  "description": "A Docker-contained world called \"mollydogs-park\"",
+  "entry": "npm start",
+  "type": "web",
+  "port": 8080,
+  "tags": [
+    "interactive",
+    "web",
+    "docker"
+  ]
+}

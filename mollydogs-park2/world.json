@@ -1,0 +1,12 @@
+{
+  "name": "mollydogs-park2",
+  "image": "ghcr.io/joshcassell4/mollydogs-park2",
+  "description": "Mollydogs in a web park",
+  "entry": "npm start",
+  "type": "web",
+  "port": 8080,
+  "tags": [
+    "dogs",
+    "joy"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "my-flask-park",
+  "image": "ghcr.io/your-namespace/my-cli-park",
+  "description": "A Docker-contained world called \"my-cli-park\"",
+  "entry": "npm start",
+  "type": "cli",
+  "tags": [
+    "interactive",
+    "docker"
+  ]
+}

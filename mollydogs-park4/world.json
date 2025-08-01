@@ -1,0 +1,11 @@
+{
+  "name": "mollydogs-park4",
+  "image": "ghcr.io/your-namespace/mollydogs-park4",
+  "description": "Mollydogs in a web park part 4",
+  "entry": "npm start",
+  "type": "web",
+  "port": 8080,
+  "tags": [
+    "dogs joy"
+  ]
+}

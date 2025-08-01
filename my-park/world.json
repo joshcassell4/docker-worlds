@@ -1,0 +1,13 @@
+{
+  "name": "my-flask-park",
+  "image": "ghcr.io/your-namespace/my-park",
+  "description": "A Docker-contained world called \"my-park\"",
+  "entry": "npm start",
+  "type": "web",
+  "port": 8080,
+  "tags": [
+    "interactive",
+    "docker"
+  ],
+  "volumeMount": true
+}
