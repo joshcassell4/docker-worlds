@@ -75,17 +75,16 @@ try {
 const dockerArgs = ['run', '--rm'];
 if (world.type === 'web') {
   dockerArgs.push('-p', `${launchPort}:80`);
-  if (world.volumeMount) {
-    console.log(`📦 Mounting volume from ${absoluteDir} to /app`);
-    dockerArgs.push('-v', `${absoluteDir}:/app`);
-  }
 } else if (world.type === 'cli') {
   dockerArgs.push('-it');
 } else {
   console.error(`❌ Unknown world type: "${world.type}"`);
   process.exit(1);
 }
-
+if (world.volumeMount) {
+  console.log(`📦 Mounting volume from ${absoluteDir} to /app`);
+  dockerArgs.push('-v', `${absoluteDir}:/app`);
+}
 if (detached) dockerArgs.push('-d');
 dockerArgs.push(image);
 

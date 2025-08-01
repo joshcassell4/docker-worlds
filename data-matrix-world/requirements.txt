@@ -1,0 +1,5 @@
+blessed==1.20.0
+rich==13.7.0
+numpy==1.24.3
+pyfiglet==0.8.post1
+asyncio==3.4.3

@@ -1,0 +1,13 @@
+{
+  "name": "log-theater-world",
+  "version": "1.0.0",
+  "description": "A theatrical log performance world",
+  "main": "log_theater.js",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "chalk": "^5.3.0",
+    "terminal-kit": "^3.0.0",
+    "figlet": "^1.6.0",
+    "faker": "^5.5.3"
+  }
+}

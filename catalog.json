@@ -1,5 +1,33 @@
 [
   {
+    "name": "data-matrix-world",
+    "description": "Matrix-inspired cascading data with colorful digital rain",
+    "image": "ghcr.io/your-namespace/data-matrix-world",
+    "type": "cli",
+    "port": null,
+    "tags": [
+      "interactive",
+      "terminal",
+      "matrix",
+      "data",
+      "visualization"
+    ]
+  },
+  {
+    "name": "log-theater-world",
+    "description": "Watch logs perform like actors on a stage with dramatic colored highlighting",
+    "image": "ghcr.io/your-namespace/log-theater-world",
+    "type": "cli",
+    "port": null,
+    "tags": [
+      "interactive",
+      "terminal",
+      "logs",
+      "theater",
+      "colorful"
+    ]
+  },
+  {
     "name": "mollydogs-park",
     "description": "A Docker-contained world called \"mollydogs-park\"",
     "image": "ghcr.io/joshcassell4/mollydogs-park",
@@ -40,6 +68,42 @@
     "port": 8080,
     "tags": [
       "dogs joy"
+    ]
+  },
+  {
+    "name": "my-flask-park",
+    "description": "A Docker-contained world called \"my-cli-park\"",
+    "image": "ghcr.io/your-namespace/my-cli-park",
+    "type": "cli",
+    "port": null,
+    "tags": [
+      "interactive",
+      "docker"
+    ]
+  },
+  {
+    "name": "my-flask-park",
+    "description": "A Docker-contained world called \"my-park\"",
+    "image": "ghcr.io/your-namespace/my-park",
+    "type": "web",
+    "port": 8080,
+    "tags": [
+      "interactive",
+      "docker"
+    ]
+  },
+  {
+    "name": "text-symphony-world",
+    "description": "A terminal-based world where colorful text streams create a visual symphony",
+    "image": "ghcr.io/your-namespace/text-symphony-world",
+    "type": "cli",
+    "port": null,
+    "tags": [
+      "interactive",
+      "terminal",
+      "colorful",
+      "text",
+      "symphony"
     ]
   }
 ]

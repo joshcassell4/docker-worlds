@@ -1,0 +1,22 @@
+{
+  "name": "log-theater-world",
+  "image": "ghcr.io/your-namespace/log-theater-world",
+  "description": "Watch logs perform like actors on a stage with dramatic colored highlighting",
+  "entry": "node log_theater.js",
+  "type": "cli",
+  "tags": ["interactive", "terminal", "logs", "theater", "colorful"],
+  "textMode": {
+    "colorSupport": "truecolor",
+    "effects": ["spotlight", "entrance", "exit", "dramatic"],
+    "fontSize": "responsive",
+    "asciiArt": true,
+    "unicodeSupport": true
+  },
+  "theater": {
+    "stages": 3,
+    "actors": ["INFO", "WARN", "ERROR", "DEBUG", "SUCCESS"],
+    "effects": ["spotlight", "fade", "slide", "bounce"],
+    "tempo": "dramatic"
+  },
+  "volumeMount": true
+}

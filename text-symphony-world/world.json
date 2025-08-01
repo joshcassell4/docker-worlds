@@ -1,0 +1,21 @@
+{
+  "name": "text-symphony-world",
+  "image": "ghcr.io/your-namespace/text-symphony-world",
+  "description": "A terminal-based world where colorful text streams create a visual symphony",
+  "entry": "python text_symphony.py",
+  "type": "cli",
+  "tags": ["interactive", "terminal", "colorful", "text", "symphony"],
+  "textMode": {
+    "colorSupport": "truecolor",
+    "effects": ["rainbow", "gradient", "pulse", "wave", "cascade"],
+    "fontSize": "responsive",
+    "asciiArt": true,
+    "unicodeSupport": true
+  },
+  "orchestration": {
+    "streams": 5,
+    "synchronization": "musical",
+    "tempo": 120,
+    "instruments": ["strings", "percussion", "wind", "synth", "bass"]
+  }
+}

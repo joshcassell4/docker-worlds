@@ -1,0 +1,22 @@
+{
+  "name": "data-matrix-world",
+  "image": "ghcr.io/your-namespace/data-matrix-world",
+  "description": "Matrix-inspired cascading data with colorful digital rain",
+  "entry": "python data_matrix.py",
+  "type": "cli",
+  "tags": ["interactive", "terminal", "matrix", "data", "visualization"],
+  "textMode": {
+    "colorSupport": "truecolor",
+    "effects": ["cascade", "glow", "trail", "glitch"],
+    "fontSize": "responsive",
+    "asciiArt": true,
+    "unicodeSupport": true
+  },
+  "matrix": {
+    "columns": "auto",
+    "speed": "variable",
+    "colorSchemes": ["classic", "cyberpunk", "rainbow", "fire", "ice"],
+    "dataTypes": ["binary", "hex", "unicode", "custom"],
+    "interactivity": true
+  }
+}
